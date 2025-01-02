@@ -61,18 +61,18 @@ This project is the headless **Payload CMS** that powers my personal website, [p
 
 5. (Optional) Configure web server to redirect to `/admin`
 
-   I didn't like having my root URL just 404 when the only URLs used for this project are the `/admin` and `/api` endpoints (as well as `/_next` for supporting files). To that end, here is some Caddy configuration I use to redirect that may be of use:
+    I didn't like having my root URL just 404 when the only URLs used for this project are the `/admin` and `/api` endpoints (as well as `/_next` for supporting files). To that end, here is some Caddy configuration I use to redirect that may be of use:
 
-   ```text
-   # Match any request that is not /admin or under /api
-   @notPayload {
-       not path /admin /admin/* /api /api/* /_next /_next/*
-   }
-   
-   # Redirect those requests to /admin
-   redir @notPayload /admin 302
-   ```
-   
+    ```text
+    # Match any request that is not /admin or under /api
+    @notPayload {
+        not path /admin /admin/* /api /api/* /_next /_next/*
+    }
+
+    # Redirect those requests to /admin
+    redir @notPayload /admin 302
+    ```
+
 ---
 
 ## Collections Overview
