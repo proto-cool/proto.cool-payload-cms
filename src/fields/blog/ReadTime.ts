@@ -1,4 +1,4 @@
-import { Field, RichTextField, Tab, TabsField } from "payload";
+import { Field, FieldAccess, RichTextField, Tab, TabsField } from "payload";
 import { $getRoot } from "lexical";
 import { createHeadlessEditor } from "@payloadcms/richtext-lexical/lexical/headless";
 import {
@@ -7,12 +7,18 @@ import {
     SanitizedServerEditorConfig,
 } from "@payloadcms/richtext-lexical";
 import getReadingTime from "reading-time";
+import { authenticated, closedAccess, openAccess } from "@/accessUtils";
 
 const ReadTime: Field = {
     name: "readTime",
     type: "text",
     admin: {
         hidden: true, // hides the field from the admin panel
+    },
+    access: {
+        create: closedAccess as FieldAccess,
+        read: openAccess as FieldAccess,
+        update: closedAccess as FieldAccess,
     },
     hooks: {
         beforeChange: [
