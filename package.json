@@ -14,8 +14,8 @@
         "format": "pnpm prettier --write .",
         "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
         "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-        "container:build": "sudo docker buildx build --platform linux/amd64 -t ghcr.io/proto-cool/payload-cms:latest .",
-        "container:deploy": "docker push ghcr.io/proto-cool/payload-cms:latest"
+        "container:build": "sudo docker buildx build --platform linux/amd64 -t ghcr.io/proto-cool/payload-cms:latest -t ghcr.io/proto-cool/payload-cms:$npm_package_version .",
+        "container:deploy": "docker push ghcr.io/proto-cool/payload-cms:latest && docker push ghcr.io/proto-cool/payload-cms:$npm_package_version"
     },
     "dependencies": {
         "@payloadcms/db-postgres": "3.12.0",
