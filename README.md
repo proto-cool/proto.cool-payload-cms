@@ -59,6 +59,20 @@ This project is the headless **Payload CMS** that powers my personal website, [p
 
     The CMS dashboard will be available at [http://localhost:3000/admin](http://localhost:3000/admin).
 
+5. (Optional) Configure web server to redirect to `/admin`
+
+   I didn't like having my root URL just 404 when the only URLs used for this project are the `/admin` and `/api` endpoints (as well as `/_next` for supporting files). To that end, here is some Caddy configuration I use to redirect that may be of use:
+
+   ```text
+   # Match any request that is not /admin or under /api
+   @notPayload {
+       not path /admin /admin/* /api /api/* /_next /_next/*
+   }
+   
+   # Redirect those requests to /admin
+   redir @notPayload /admin 302
+   ```
+   
 ---
 
 ## Collections Overview
@@ -116,9 +130,3 @@ This project is the headless **Payload CMS** that powers my personal website, [p
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
-
-### Disclaimer
-
-This project is for my personal website, so I can't guarantee code quality or anything for your usage, but if you have feedback or questions, please feel free to get in touch!
