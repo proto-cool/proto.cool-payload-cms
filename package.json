@@ -1,0 +1,55 @@
+{
+    "name": "proto.cool-payload-cms",
+    "version": "1.0.0",
+    "description": "A blank template to get started with Payload 3.0",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+        "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+        "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+        "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+        "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+        "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+        "format": "pnpm prettier --write .",
+        "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+        "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+        "container:build": "sudo docker buildx build --platform linux/amd64 -t ghcr.io/proto-cool/payload-cms:latest .",
+        "container:deploy": "docker push ghcr.io/proto-cool/payload-cms:latest"
+    },
+    "dependencies": {
+        "@payloadcms/db-postgres": "3.12.0",
+        "@payloadcms/next": "3.12.0",
+        "@payloadcms/payload-cloud": "3.12.0",
+        "@payloadcms/richtext-lexical": "3.12.0",
+        "@payloadcms/ui": "3.12.0",
+        "cross-env": "^7.0.3",
+        "graphql": "^16.10.0",
+        "lexical": "0.20.0",
+        "next": "15.1.0",
+        "payload": "3.12.0",
+        "react": "19.0.0",
+        "react-dom": "19.0.0",
+        "reading-time": "^1.5.0",
+        "sharp": "0.32.6"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3.2.0",
+        "@eslint/js": "^9.17.0",
+        "@types/node": "^22.10.3",
+        "@types/react": "19.0.1",
+        "@types/react-dom": "19.0.1",
+        "eslint": "^9.17.0",
+        "eslint-config-next": "15.1.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "eslint-plugin-react": "^7.37.3",
+        "globals": "^15.14.0",
+        "prettier": "^3.4.2",
+        "typescript": "5.7.2",
+        "typescript-eslint": "^8.19.0"
+    },
+    "engines": {
+        "node": "^18.20.2 || >=20.9.0"
+    }
+}
