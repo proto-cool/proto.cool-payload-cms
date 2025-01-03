@@ -4,7 +4,7 @@ import { Post, Tag } from "@/payload-types";
 
 const PostCount: Field = {
     name: "postCount",
-    type: "text",
+    type: "number",
     admin: {
         hidden: true, // hides the field from the admin panel
     },
