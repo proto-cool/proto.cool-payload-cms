@@ -15,6 +15,7 @@ const ReadTime: Field = {
     admin: {
         hidden: true, // hides the field from the admin panel
     },
+    virtual: true,
     access: {
         create: closedAccess as FieldAccess,
         read: openAccess as FieldAccess,
