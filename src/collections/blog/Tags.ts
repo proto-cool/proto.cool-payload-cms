@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
 import { slugField } from "@/fields/slug";
 import { authenticated, openAccess } from "@/accessUtils";
+import PostCount from "@/fields/blog/PostCount";
 
 export const Tags: CollectionConfig = {
     slug: "tags",
@@ -39,6 +40,7 @@ export const Tags: CollectionConfig = {
             type: "text",
             required: false,
         },
+        PostCount,
     ],
 };
 

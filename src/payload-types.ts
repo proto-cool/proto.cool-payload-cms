@@ -73,6 +73,7 @@ export interface Tag {
     slug?: string | null;
     slugLock?: boolean | null;
     description?: string | null;
+    postCount?: string | null;
     updatedAt: string;
     createdAt: string;
 }
@@ -229,6 +230,7 @@ export interface TagsSelect<T extends boolean = true> {
     slug?: T;
     slugLock?: T;
     description?: T;
+    postCount?: T;
     updatedAt?: T;
     createdAt?: T;
 }
