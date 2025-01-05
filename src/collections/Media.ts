@@ -29,6 +29,12 @@ export const Media: CollectionConfig = {
                 height: 300,
                 position: "centre",
             },
+            {
+                name: "medium",
+                width: 1024,
+                height: 768,
+                position: "centre",
+            },
         ],
         adminThumbnail: "thumbnail",
     },
