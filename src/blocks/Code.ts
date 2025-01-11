@@ -18,6 +18,10 @@ export const Code: Block = {
                     value: "javascript",
                 },
                 {
+                    label: "HTML",
+                    value: "html",
+                },
+                {
                     label: "CSS",
                     value: "css",
                 },
