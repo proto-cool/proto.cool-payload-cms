@@ -20,13 +20,14 @@ export const slugField: Slug = (fieldToUse = "title", overrides = {}) => {
         admin: {
             hidden: true,
             position: "sidebar",
+            ...(checkboxOverrides?.admin || {}),
         },
-        ...checkboxOverrides,
         access: {
             create: authenticated as FieldAccess,
             read: authenticated as FieldAccess,
             update: authenticated as FieldAccess,
         },
+        ...(checkboxOverrides || {}),
     };
 
     // Expect ts error here because of typescript mismatching Partial<TextField> with TextField
@@ -36,7 +37,6 @@ export const slugField: Slug = (fieldToUse = "title", overrides = {}) => {
         type: "text",
         index: true,
         label: "Slug",
-        ...(slugOverrides || {}),
         hooks: {
             // Kept this in for hook or API based updates
             beforeValidate: [formatSlugHook(fieldToUse)],
@@ -59,6 +59,7 @@ export const slugField: Slug = (fieldToUse = "title", overrides = {}) => {
                 },
             },
         },
+        ...(slugOverrides || {}),
     };
 
     return [slugField, checkBoxField];
