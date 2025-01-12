@@ -3,35 +3,25 @@ import type { CheckboxField, FieldAccess, TextField } from "payload";
 import { formatSlugHook } from "./formatSlug";
 import { authenticated, openAccess } from "@/accessUtils";
 
-type Overrides = {
-    slugOverrides?: Partial<TextField>;
-    checkboxOverrides?: Partial<CheckboxField>;
-};
+type Slug = (fieldToUse?: string, sidebar?: boolean) => [TextField, CheckboxField];
 
-type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField];
-
-export const slugField: Slug = (fieldToUse = "title", overrides = {}) => {
-    const { slugOverrides, checkboxOverrides } = overrides;
-
+export const slugField: Slug = (fieldToUse = "title", sidebar = false) => {
     const checkBoxField: CheckboxField = {
         name: "slugLock",
         type: "checkbox",
         defaultValue: true,
         admin: {
             hidden: true,
-            position: "sidebar",
-            ...(checkboxOverrides?.admin || {}),
+            position: sidebar ? "sidebar" : undefined,
         },
         access: {
             create: authenticated as FieldAccess,
             read: authenticated as FieldAccess,
             update: authenticated as FieldAccess,
         },
-        ...(checkboxOverrides || {}),
     };
 
     // Expect ts error here because of typescript mismatching Partial<TextField> with TextField
-    // @ts-expect-error
     const slugField: TextField = {
         name: "slug",
         type: "text",
@@ -47,8 +37,7 @@ export const slugField: Slug = (fieldToUse = "title", overrides = {}) => {
             update: authenticated as FieldAccess,
         },
         admin: {
-            position: "sidebar",
-            ...(slugOverrides?.admin || {}),
+            position: sidebar ? "sidebar" : undefined,
             components: {
                 Field: {
                     path: "@/fields/slug/SlugComponent#SlugComponent",
@@ -59,7 +48,6 @@ export const slugField: Slug = (fieldToUse = "title", overrides = {}) => {
                 },
             },
         },
-        ...(slugOverrides || {}),
     };
 
     return [slugField, checkBoxField];

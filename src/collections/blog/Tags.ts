@@ -22,19 +22,7 @@ export const Tags: CollectionConfig = {
             type: "text",
             required: true,
         },
-        ...slugField("text", {
-            slugOverrides: {
-                admin: {
-                    position: undefined,
-                },
-            },
-            checkboxOverrides: {
-                admin: {
-                    hidden: true,
-                    position: undefined,
-                },
-            },
-        }),
+        ...slugField("text"),
         {
             name: "description",
             type: "text",
