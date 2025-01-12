@@ -12,8 +12,8 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "./collections/Users";
-import { Media } from "./collections/Media";
+import { Users } from "./collections/core/Users";
+import { Media } from "./collections/core/Media";
 import { Posts } from "./collections/blog/Posts";
 import { Tags } from "./collections/blog/Tags";
 
