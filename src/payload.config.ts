@@ -16,6 +16,7 @@ import { Users } from "./collections/core/Users";
 import { Media } from "./collections/core/Media";
 import { Posts } from "./collections/blog/Posts";
 import { Tags } from "./collections/blog/Tags";
+import Projects from "@/collections/content/Projects";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -27,7 +28,7 @@ export default buildConfig({
             baseDir: path.resolve(dirname),
         },
     },
-    collections: [Tags, Posts, Media, Users],
+    collections: [Tags, Posts, Media, Users, Projects],
     cors: {
         origins: ["http://localhost:3000", "https://payload.proto.cool", "https://proto.cool"],
     },
