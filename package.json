@@ -19,16 +19,16 @@
         "container:deploy": "docker push ghcr.io/proto-cool/payload-cms:latest && docker push ghcr.io/proto-cool/payload-cms:$npm_package_version"
     },
     "dependencies": {
-        "@payloadcms/db-postgres": "^3.16.0",
-        "@payloadcms/next": "^3.16.0",
-        "@payloadcms/payload-cloud": "^3.16.0",
-        "@payloadcms/richtext-lexical": "^3.16.0",
-        "@payloadcms/ui": "^3.16.0",
-        "payload": "^3.16.0",
+        "@payloadcms/db-postgres": "^3.18.0",
+        "@payloadcms/next": "^3.18.0",
+        "@payloadcms/payload-cloud": "^3.18.0",
+        "@payloadcms/richtext-lexical": "^3.18.0",
+        "@payloadcms/ui": "^3.18.0",
+        "payload": "^3.18.0",
         "cross-env": "^7.0.3",
         "graphql": "^16.10.0",
-        "lexical": "0.20.0",
-        "next": "^15.1.3",
+        "lexical": "0.21.0",
+        "next": "^15.1.6",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "reading-time": "^1.5.0",
@@ -50,8 +50,7 @@
         "prettier": "^3.4.2",
         "typescript": "5.7.2",
         "typescript-eslint": "^8.19.0",
-        "husky": "^9.1.7",
-        "path-to-regexp": "^6.3.0"
+        "husky": "^9.1.7"
     },
     "engines": {
         "node": "^18.20.2 || >=20.9.0"
