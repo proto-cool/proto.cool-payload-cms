@@ -28,6 +28,11 @@ export const Posts: CollectionConfig = {
                 await callBuildURL({ payload });
             },
         ],
+        afterDelete: [
+            async ({ req: { payload } }) => {
+                await callBuildURL({ payload });
+            },
+        ],
     },
     versions: {
         drafts: true,
