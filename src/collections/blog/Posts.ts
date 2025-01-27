@@ -3,7 +3,7 @@ import { slugField } from "@/fields/slug";
 import ReadTime from "@/fields/blog/ReadTime";
 import { authenticated, authenticatedOrPublished } from "@/utils/access";
 import RichTextContent from "@/fields/richTextContent";
-import { callBuildURL } from "@/utils/builds";
+import { callBuildURL, getChangedKeys } from "@/utils/builds";
 
 export const Posts: CollectionConfig = {
     slug: "posts",
@@ -20,7 +20,11 @@ export const Posts: CollectionConfig = {
     },
     hooks: {
         afterChange: [
-            async ({ req: { payload } }) => {
+            async ({ doc, previousDoc, req: { payload } }) => {
+                const changedKeys = getChangedKeys(doc, previousDoc);
+
+                if (changedKeys.length === 0) return;
+
                 await callBuildURL({ payload });
             },
         ],

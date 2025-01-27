@@ -1,6 +1,6 @@
 import type { GlobalConfig } from "payload";
 import { authenticated, openAccess } from "@/utils/access";
-import { callBuildURL } from "@/utils/builds";
+import { callBuildURL, getChangedKeys } from "@/utils/builds";
 
 export const SiteGlobals: GlobalConfig = {
     slug: "site",
@@ -14,7 +14,16 @@ export const SiteGlobals: GlobalConfig = {
     },
     hooks: {
         afterChange: [
-            async ({ req: { payload } }) => {
+            async ({ doc, previousDoc, req: { payload } }) => {
+                // if the only changed key is the build, don't send the build
+                const changedKeys = getChangedKeys(doc, previousDoc);
+
+                if (
+                    changedKeys.length === 0 ||
+                    (changedKeys.length === 1 && changedKeys[0] === "site-settings.enable-builds")
+                )
+                    return;
+
                 await callBuildURL({ payload });
             },
         ],
