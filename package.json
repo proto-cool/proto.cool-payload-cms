@@ -1,6 +1,6 @@
 {
     "name": "proto.cool-payload-cms",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "A blank template to get started with Payload 3.0",
     "license": "MIT",
     "type": "module",
@@ -19,12 +19,12 @@
         "container:deploy": "docker push ghcr.io/proto-cool/payload-cms:latest && docker push ghcr.io/proto-cool/payload-cms:$npm_package_version"
     },
     "dependencies": {
-        "@payloadcms/db-postgres": "^3.18.0",
-        "@payloadcms/next": "^3.18.0",
-        "@payloadcms/payload-cloud": "^3.18.0",
-        "@payloadcms/richtext-lexical": "^3.18.0",
-        "@payloadcms/ui": "^3.18.0",
-        "payload": "^3.18.0",
+        "@payloadcms/db-postgres": "^3.19.0",
+        "@payloadcms/next": "^3.19.0",
+        "@payloadcms/payload-cloud": "^3.19.0",
+        "@payloadcms/richtext-lexical": "^3.19.0",
+        "@payloadcms/ui": "^3.19.0",
+        "payload": "^3.19.0",
         "cross-env": "^7.0.3",
         "graphql": "^16.10.0",
         "lexical": "0.21.0",
