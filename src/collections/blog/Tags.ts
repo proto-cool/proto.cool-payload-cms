@@ -1,6 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { slugField } from "@/fields/slug";
-import { authenticated, openAccess } from "@/accessUtils";
+import { authenticated, openAccess } from "@/utils/access";
 import PostCount from "@/fields/blog/PostCount";
 
 export const Tags: CollectionConfig = {

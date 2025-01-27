@@ -1,7 +1,7 @@
 import type { CheckboxField, FieldAccess, TextField } from "payload";
 
 import { formatSlugHook } from "./formatSlug";
-import { authenticated, openAccess } from "@/accessUtils";
+import { authenticated, openAccess } from "@/utils/access";
 
 type Slug = (fieldToUse?: string, sidebar?: boolean) => [TextField, CheckboxField];
 

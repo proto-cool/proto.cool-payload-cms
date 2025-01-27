@@ -7,7 +7,7 @@ import {
     SanitizedServerEditorConfig,
 } from "@payloadcms/richtext-lexical";
 import getReadingTime from "reading-time";
-import { authenticated, closedAccess, openAccess } from "@/accessUtils";
+import { authenticated, closedAccess, openAccess } from "@/utils/access";
 
 const ReadTime: Field = {
     name: "readTime",

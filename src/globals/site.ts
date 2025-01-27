@@ -1,10 +1,23 @@
 import type { GlobalConfig } from "payload";
+import { authenticated, openAccess } from "@/utils/access";
+import { callBuildURL } from "@/utils/builds";
 
 export const SiteGlobals: GlobalConfig = {
     slug: "site",
     label: "Core Site Settings",
     admin: {
         group: "Site Settings",
+    },
+    access: {
+        read: openAccess,
+        update: authenticated,
+    },
+    hooks: {
+        afterChange: [
+            async ({ req: { payload } }) => {
+                await callBuildURL({ payload });
+            },
+        ],
     },
     fields: [
         {

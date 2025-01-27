@@ -1,5 +1,5 @@
 import { Field, FieldAccess, PaginatedDocs } from "payload";
-import { closedAccess, openAccess } from "@/accessUtils";
+import { closedAccess, openAccess } from "@/utils/access";
 import { Post, Tag } from "@/payload-types";
 
 const PostCount: Field = {

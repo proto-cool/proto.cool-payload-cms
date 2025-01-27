@@ -1,8 +1,9 @@
 import type { CollectionConfig } from "payload";
 import { slugField } from "@/fields/slug";
 import ReadTime from "@/fields/blog/ReadTime";
-import { authenticated, authenticatedOrPublished } from "@/accessUtils";
+import { authenticated, authenticatedOrPublished } from "@/utils/access";
 import RichTextContent from "@/fields/richTextContent";
+import { callBuildURL } from "@/utils/builds";
 
 export const Posts: CollectionConfig = {
     slug: "posts",
@@ -16,6 +17,13 @@ export const Posts: CollectionConfig = {
         read: authenticatedOrPublished,
         update: authenticated,
         delete: authenticated,
+    },
+    hooks: {
+        afterChange: [
+            async ({ req: { payload } }) => {
+                await callBuildURL({ payload });
+            },
+        ],
     },
     versions: {
         drafts: true,
