@@ -450,6 +450,7 @@ export interface Site {
         id?: string | null;
       }[]
     | null;
+  'code-injection'?: string | null;
   'site-settings'?: {
     'enable-builds'?: boolean | null;
     'use-view-transitions'?: boolean | null;
@@ -483,6 +484,7 @@ export interface SiteSelect<T extends boolean = true> {
         link?: T;
         id?: T;
       };
+  'code-injection'?: T;
   'site-settings'?:
     | T
     | {
