@@ -9,6 +9,8 @@ This project is the headless **Payload CMS** that powers my personal website, [p
 - **Rich Blog Management**: Manage blog posts with rich text content, tags, and customizable metadata.
 - **Tags for Categorization**: Assign and manage tags to organize and classify blog posts.
 - The default **User System**, **Media Handling**, and **Draft and Version** controls that come with Payload CMS are enabled.
+- Builds can be kicked off automatically when Posts are published or modified, providing authors a seamless publishing experience.
+- The frontend is largely data-driven from the data stored in Payload. In fact, this repository is used in production for my Payload instance and website, but you can fork it and start writing your own content!
 
 ---
 
@@ -126,6 +128,27 @@ This project is the headless **Payload CMS** that powers my personal website, [p
     - Unchanged from default Payload CMS.
 
 ---
+
+## Globals Overview
+
+**Globals** are a PayloadCMS concept which is a data type very similar to Collections, but where there is not multiples of that data type. This lends itself well to...
+
+### Site Metadata
+
+- **Purpose**: Core metadata about the site and yourself as its author.
+- **Fields**:
+    - `id`: Unique identifier for the document.
+    - `name`: The name of the site - shows up in the header, etc.
+    - `title`: A title for the site that shows up on the homepage.
+    - `description`: A short description about the site used for SEO and other things.
+    - `author`: The name you'd like to use throughout the site.
+    - `author-photo`: A photo of the author to use throughout the site.
+    - `nav`: Navigation links for the header/mobile navigation menu. TODO: Make sure empty navs are supported properly.
+    - `social`: Social network links that are used for the hero section and footer. TODO: Make sure empty socials are supported properly.
+    - `code-injection`: Analytics code, or anything else that goes into <Head> goes here. Be *very* careful what you put here, someone could trick you into placing malicious code here.
+    - `enable-builds`: Combined with the `FRONTEND_BUILD_URL` environment variable, allows Payload to kick off a build whenever content changes.
+    - `use-view-transitions`: Whether to enable the new View Transition API in Astro. Works in Chromium, Safari, etc, but not Firefox (yet!)
+    - `use-animations`: The default site comes included with some animations on the index page, this checkbox will control whether they are enabled.
 
 ## License
 
