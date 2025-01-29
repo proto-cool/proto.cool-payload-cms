@@ -36,12 +36,6 @@ export const SiteGlobals: GlobalConfig = {
             required: true,
         },
         {
-            name: "author",
-            label: "Author Name",
-            type: "text",
-            required: true,
-        },
-        {
             name: "title",
             label: "Site Title",
             type: "text",
@@ -52,6 +46,19 @@ export const SiteGlobals: GlobalConfig = {
             label: "Site Description",
             type: "textarea",
             required: true,
+        },
+        {
+            name: "author",
+            label: "Author Name",
+            type: "text",
+            required: true,
+        },
+        {
+            name: "author-photo",
+            label: "Author Photo",
+            type: "upload",
+            relationTo: "media",
+            required: false,
         },
         {
             name: "nav",
