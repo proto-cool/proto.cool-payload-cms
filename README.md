@@ -145,7 +145,7 @@ This project is the headless **Payload CMS** that powers my personal website, [p
     - `author-photo`: A photo of the author to use throughout the site.
     - `nav`: Navigation links for the header/mobile navigation menu. TODO: Make sure empty navs are supported properly.
     - `social`: Social network links that are used for the hero section and footer. TODO: Make sure empty socials are supported properly.
-    - `code-injection`: Analytics code, or anything else that goes into <Head> goes here. Be *very* careful what you put here, someone could trick you into placing malicious code here.
+    - `code-injection`: Analytics code, or anything else that goes into <Head> goes here. Be _very_ careful what you put here, someone could trick you into placing malicious code here.
     - `enable-builds`: Combined with the `FRONTEND_BUILD_URL` environment variable, allows Payload to kick off a build whenever content changes.
     - `use-view-transitions`: Whether to enable the new View Transition API in Astro. Works in Chromium, Safari, etc, but not Firefox (yet!)
     - `use-animations`: The default site comes included with some animations on the index page, this checkbox will control whether they are enabled.
