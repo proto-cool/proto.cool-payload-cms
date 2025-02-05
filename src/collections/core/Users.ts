@@ -1,5 +1,5 @@
 import type { CollectionConfig } from "payload";
-import { authenticated } from "@/utils/access";
+import { authenticated, openAccess } from "@/utils/access";
 
 export const Users: CollectionConfig = {
     slug: "users",
@@ -9,7 +9,7 @@ export const Users: CollectionConfig = {
     },
     access: {
         create: authenticated,
-        read: authenticated,
+        read: openAccess,
         update: authenticated,
         delete: authenticated,
     },

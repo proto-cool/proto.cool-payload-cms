@@ -27,6 +27,31 @@ export const SiteGlobals: GlobalConfig = {
                 await callBuildURL({ payload });
             },
         ],
+        afterRead: [
+            async ({ doc, req: { payload } }) => {
+                if (doc.author) {
+                    const authorAvatarRequest = await payload.find({
+                        collection: "media",
+                        where: { id: { equals: doc.author.avatar } },
+                        depth: 1,
+                        limit: 1,
+                    });
+
+                    if (authorAvatarRequest.docs.length === 0) return doc;
+
+                    const authorAvatar = authorAvatarRequest.docs[0];
+
+                    // Filter out superfluous user information from the Author object in the API
+                    doc.author = {
+                        id: doc.author.id,
+                        displayName: doc.author.displayName,
+                        avatar: authorAvatar,
+                    };
+                }
+
+                return doc;
+            },
+        ],
     },
     fields: [
         {
