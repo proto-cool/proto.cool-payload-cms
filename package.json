@@ -1,6 +1,6 @@
 {
     "name": "proto.cool-payload-cms",
-    "version": "1.5.4",
+    "version": "1.5.5",
     "description": "A blog site template to get started with Payload 3.0",
     "license": "MIT",
     "type": "module",

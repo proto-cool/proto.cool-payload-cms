@@ -1,4 +1,4 @@
-import type { GlobalConfig } from "payload";
+import type { BasePayload, GlobalConfig } from "payload";
 import { authenticated, openAccess } from "@/utils/access";
 import { callBuildURL, getChangedKeys } from "@/utils/builds";
 
@@ -30,23 +30,28 @@ export const SiteGlobals: GlobalConfig = {
         afterRead: [
             async ({ doc, req: { payload } }) => {
                 if (doc.author) {
-                    const authorAvatarRequest = await payload.find({
-                        collection: "media",
-                        where: { id: { equals: doc.author.avatar } },
-                        depth: 1,
-                        limit: 1,
-                    });
+                    if (typeof doc.author === "string" || typeof doc.author === "number") {
+                        // If author is just an ID, fetch the full user
+                        const user = await payload.findByID({
+                            collection: "users",
+                            id: doc.author,
+                            depth: 1,
+                        });
 
-                    if (authorAvatarRequest.docs.length === 0) return doc;
-
-                    const authorAvatar = authorAvatarRequest.docs[0];
-
-                    // Filter out superfluous user information from the Author object in the API
-                    doc.author = {
-                        id: doc.author.id,
-                        displayName: doc.author.displayName,
-                        avatar: authorAvatar,
-                    };
+                        if (user) {
+                            doc.author = {
+                                id: user.id,
+                                displayName: user.displayName,
+                                avatar: await resolveAuthorAvatar(user.avatar, payload),
+                            };
+                        }
+                    } else if (typeof doc.author === "object") {
+                        doc.author = {
+                            id: doc.author.id,
+                            displayName: doc.author.displayName,
+                            avatar: await resolveAuthorAvatar(doc.author.avatar, payload),
+                        };
+                    }
                 }
 
                 return doc;
@@ -254,4 +259,23 @@ export const SiteGlobals: GlobalConfig = {
             ],
         },
     ],
+};
+
+const resolveAuthorAvatar = async (avatar: any, payload: BasePayload) => {
+    if (!avatar) return null;
+
+    if (typeof avatar === "string" || typeof avatar === "number") {
+        // If it's an ID, fetch the media object
+        return await payload.findByID({
+            collection: "media",
+            id: avatar,
+            depth: 1,
+        });
+    }
+
+    if (typeof avatar === "object") {
+        return avatar;
+    }
+
+    return null;
 };
