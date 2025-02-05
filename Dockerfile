@@ -2,6 +2,8 @@
 # From https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 
 FROM node:lts-alpine AS base
+RUN npm install -g corepack@latest
+RUN corepack enable pnpm
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -11,9 +13,7 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json pnpm-lock.yaml* ./
-RUN npm i -g corepack@latest
-RUN corepack enable pnpm && pnpm i --frozen-lockfile
-
+RUN pnpm i --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -26,7 +26,7 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN corepack enable pnpm && pnpm run build
+RUN pnpm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
