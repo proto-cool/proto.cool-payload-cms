@@ -159,6 +159,8 @@ export interface Media {
  */
 export interface User {
     id: number;
+    displayName: string;
+    avatar?: (number | null) | Media;
     updatedAt: string;
     createdAt: string;
     email: string;
@@ -346,6 +348,8 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+    displayName?: T;
+    avatar?: T;
     updatedAt?: T;
     createdAt?: T;
     email?: T;
@@ -411,8 +415,7 @@ export interface Site {
     name: string;
     title: string;
     description: string;
-    author: string;
-    "author-photo"?: (number | null) | Media;
+    author: number | User;
     nav?:
         | {
               label: string;
@@ -423,6 +426,7 @@ export interface Site {
     social?:
         | {
               platform:
+                  | "applemusic"
                   | "behance"
                   | "bluesky"
                   | "codepen"
@@ -452,8 +456,8 @@ export interface Site {
               id?: string | null;
           }[]
         | null;
-    "code-injection"?: string | null;
-    "site-settings": {
+    codeInjection?: string | null;
+    siteSettings: {
         timezone:
             | "Africa/Abidjan"
             | "Africa/Cairo"
@@ -492,9 +496,9 @@ export interface Site {
             | "Australia/Perth"
             | "Antarctica/Palmer"
             | "Antarctica/McMurdo";
-        "enable-builds"?: boolean | null;
-        "use-view-transitions"?: boolean | null;
-        "use-animations"?: boolean | null;
+        enableBuilds?: boolean | null;
+        useViewTransitions?: boolean | null;
+        useAnimations?: boolean | null;
     };
     updatedAt?: string | null;
     createdAt?: string | null;
@@ -508,7 +512,6 @@ export interface SiteSelect<T extends boolean = true> {
     title?: T;
     description?: T;
     author?: T;
-    "author-photo"?: T;
     nav?:
         | T
         | {
@@ -524,14 +527,14 @@ export interface SiteSelect<T extends boolean = true> {
               link?: T;
               id?: T;
           };
-    "code-injection"?: T;
-    "site-settings"?:
+    codeInjection?: T;
+    siteSettings?:
         | T
         | {
               timezone?: T;
-              "enable-builds"?: T;
-              "use-view-transitions"?: T;
-              "use-animations"?: T;
+              enableBuilds?: T;
+              useViewTransitions?: T;
+              useAnimations?: T;
           };
     updatedAt?: T;
     createdAt?: T;

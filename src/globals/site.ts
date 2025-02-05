@@ -20,7 +20,7 @@ export const SiteGlobals: GlobalConfig = {
 
                 if (
                     changedKeys.length === 0 ||
-                    (changedKeys.length === 1 && changedKeys[0] === "site-settings.enable-builds")
+                    (changedKeys.length === 1 && changedKeys[0] === "siteSettings.enableBuilds")
                 )
                     return;
 
@@ -53,16 +53,9 @@ export const SiteGlobals: GlobalConfig = {
                 },
                 {
                     name: "author",
-                    label: "Author Name",
-                    type: "text",
+                    type: "relationship",
+                    relationTo: "users",
                     required: true,
-                },
-                {
-                    name: "author-photo",
-                    label: "Author Photo",
-                    type: "upload",
-                    relationTo: "media",
-                    required: false,
                 },
                 {
                     name: "nav",
@@ -89,6 +82,7 @@ export const SiteGlobals: GlobalConfig = {
                         {
                             name: "platform",
                             options: [
+                                "applemusic",
                                 "behance",
                                 "bluesky",
                                 "codepen",
@@ -132,13 +126,13 @@ export const SiteGlobals: GlobalConfig = {
             ],
         },
         {
-            name: "code-injection",
+            name: "codeInjection",
             label: "Code Injection (analytics, etc. - goes into <head>)",
             type: "textarea",
             required: false,
         },
         {
-            name: "site-settings",
+            name: "siteSettings",
             label: "Site Settings",
             type: "group",
             admin: {
@@ -216,19 +210,19 @@ export const SiteGlobals: GlobalConfig = {
                     defaultValue: "America/New_York",
                 },
                 {
-                    name: "enable-builds",
+                    name: "enableBuilds",
                     label: "Enable Builds (for GH/CF Pages, etc)",
                     type: "checkbox",
                     defaultValue: false,
                 },
                 {
-                    name: "use-view-transitions",
+                    name: "useViewTransitions",
                     label: "Use View Transition API",
                     type: "checkbox",
                     defaultValue: true,
                 },
                 {
-                    name: "use-animations",
+                    name: "useAnimations",
                     type: "checkbox",
                     defaultValue: true,
                 },

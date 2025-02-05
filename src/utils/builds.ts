@@ -5,7 +5,7 @@ const callBuildURL = async ({ payload }: { payload: BasePayload }) => {
     const siteGlobals = await payload.findGlobal({
         slug: "site",
     });
-    const buildsEnabled: boolean = siteGlobals["site-settings"]!["enable-builds"]!;
+    const buildsEnabled: boolean = siteGlobals.siteSettings!.enableBuilds ?? false;
 
     if (buildsEnabled && process.env.NODE_ENV === "production") {
         const buildUrl = process.env.FRONTEND_BUILD_URL || "";

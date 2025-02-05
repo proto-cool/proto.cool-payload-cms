@@ -15,7 +15,17 @@ export const Users: CollectionConfig = {
     },
     auth: true,
     fields: [
-        // Email added by default
-        // Add more fields as needed
+        {
+            type: "text",
+            name: "displayName",
+            defaultValue: "John Doe",
+            required: true,
+        },
+        {
+            name: "avatar",
+            type: "upload",
+            relationTo: "media",
+            required: false,
+        },
     ],
 };
