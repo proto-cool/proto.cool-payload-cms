@@ -13,7 +13,7 @@ import { fileURLToPath } from "url";
 import sharp from "sharp";
 
 import { Users } from "./collections/core/Users";
-import { Media } from "./collections/core/Media";
+import { Media } from "./collections/content/Media";
 import { Posts } from "./collections/blog/Posts";
 import { Tags } from "./collections/blog/Tags";
 import Projects from "@/collections/content/Projects";
@@ -29,7 +29,7 @@ export default buildConfig({
             baseDir: path.resolve(dirname),
         },
     },
-    collections: [Tags, Posts, Media, Users, Projects],
+    collections: [Posts, Tags, Projects, Media, Users],
     globals: [SiteGlobals],
     cors: {
         origins: ["http://localhost:3000", "https://payload.proto.cool", "https://proto.cool"],

@@ -15,6 +15,7 @@ import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997e
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
 import { LinkFeatureClient as LinkFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
+import { RunBuildButtonComponent as RunBuildButtonComponent_e29f135efd4f65ecad04b4e75ba82155 } from "@/fields/build/run-button/RunBuildButtonComponent";
 
 export const importMap = {
     "@/fields/slug/SlugComponent#SlugComponent": SlugComponent_92cc057d0a2abb4f6cf0307edf59f986,
@@ -50,4 +51,6 @@ export const importMap = {
         ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
     "@payloadcms/richtext-lexical/client#LinkFeatureClient":
         LinkFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+    "@/fields/build/run-button/RunBuildButtonComponent#RunBuildButtonComponent":
+        RunBuildButtonComponent_e29f135efd4f65ecad04b4e75ba82155,
 };

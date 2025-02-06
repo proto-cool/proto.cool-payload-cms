@@ -3,9 +3,13 @@ import { authenticated, openAccess } from "@/utils/access";
 
 export const Users: CollectionConfig = {
     slug: "users",
+    labels: {
+        singular: "User",
+        plural: "Users & Authors",
+    },
     admin: {
         useAsTitle: "email",
-        group: "Core Collections",
+        group: "Site Settings",
     },
     access: {
         create: authenticated,

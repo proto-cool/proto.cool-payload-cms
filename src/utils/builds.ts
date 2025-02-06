@@ -1,19 +1,35 @@
 import { BasePayload } from "payload";
-import * as process from "node:process";
 
-const callBuildURL = async ({ payload }: { payload: BasePayload }) => {
-    const siteGlobals = await payload.findGlobal({
-        slug: "site",
-    });
-    const buildsEnabled: boolean = siteGlobals.siteSettings!.enableBuilds ?? false;
+interface BuildFrontendOptions {
+    payload?: BasePayload;
+    force?: boolean;
+}
 
-    if (buildsEnabled && process.env.NODE_ENV === "production") {
+const postBuildURL = async (force = false) => {
+    if (process.env.NODE_ENV === "production" || force) {
         const buildUrl = process.env.FRONTEND_BUILD_URL || "";
         if (!!buildUrl)
             await fetch(buildUrl, {
                 method: "POST",
             });
     }
+};
+
+const buildFrontend = async ({ payload, force = false }: BuildFrontendOptions) => {
+    if (force) {
+        await postBuildURL(force);
+        return;
+    }
+
+    if (!payload) return;
+
+    const siteGlobals = await payload.findGlobal({
+        slug: "site",
+    });
+    const buildsEnabled: boolean = siteGlobals.siteSettings!.enableBuilds ?? false;
+    if (!buildsEnabled) return;
+
+    await postBuildURL();
 };
 
 function getChangedKeys(
@@ -66,4 +82,4 @@ function areArraysEqual(arr1: string | any[], arr2: string | any[]) {
     return true;
 }
 
-export { callBuildURL, getChangedKeys };
+export { buildFrontend, getChangedKeys };

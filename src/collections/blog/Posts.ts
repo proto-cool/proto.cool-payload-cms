@@ -3,14 +3,14 @@ import { slugField } from "@/fields/slug";
 import ReadTime from "@/fields/blog/ReadTime";
 import { authenticated, authenticatedOrPublished } from "@/utils/access";
 import RichTextContent from "@/fields/richTextContent";
-import { callBuildURL, getChangedKeys } from "@/utils/builds";
+import { buildFrontend, getChangedKeys } from "@/utils/builds";
 
 export const Posts: CollectionConfig = {
     slug: "posts",
     admin: {
         defaultColumns: ["title"],
         useAsTitle: "title",
-        group: "Blog Collections",
+        group: "Blog Content",
     },
     access: {
         create: authenticated,
@@ -25,12 +25,12 @@ export const Posts: CollectionConfig = {
 
                 if (changedKeys.length === 0) return;
 
-                await callBuildURL({ payload });
+                await buildFrontend({ payload });
             },
         ],
         afterDelete: [
             async ({ req: { payload } }) => {
-                await callBuildURL({ payload });
+                await buildFrontend({ payload });
             },
         ],
     },

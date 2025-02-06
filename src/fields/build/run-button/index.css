@@ -1,0 +1,8 @@
+.run-build-button-component {
+    height: auto;
+}
+
+.run-build-button-component button {
+    margin: 0;
+    min-width: 16rem;
+}

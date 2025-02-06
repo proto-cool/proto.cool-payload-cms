@@ -4,7 +4,7 @@ import { authenticated, openAccess } from "@/utils/access";
 export const Media: CollectionConfig = {
     slug: "media",
     admin: {
-        group: "Core Collections",
+        group: "Other Content Types",
     },
     access: {
         create: authenticated,

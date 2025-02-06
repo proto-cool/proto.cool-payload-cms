@@ -1,11 +1,12 @@
 import type { BasePayload, GlobalConfig } from "payload";
 import { authenticated, openAccess } from "@/utils/access";
-import { callBuildURL, getChangedKeys } from "@/utils/builds";
+import { buildFrontend, getChangedKeys } from "@/utils/builds";
 import { resolveRelationship } from "@/utils/documents";
+import { runBuildButton } from "@/fields/build/run-button";
 
 export const SiteGlobals: GlobalConfig = {
     slug: "site",
-    label: "Core Site Settings",
+    label: "Metadata & Build Settings",
     admin: {
         group: "Site Settings",
     },
@@ -25,7 +26,7 @@ export const SiteGlobals: GlobalConfig = {
                 )
                     return;
 
-                await callBuildURL({ payload });
+                if (doc.siteSettings.enableBuilds) await buildFrontend({ payload });
             },
         ],
         afterRead: [
@@ -232,12 +233,6 @@ export const SiteGlobals: GlobalConfig = {
                     defaultValue: "America/New_York",
                 },
                 {
-                    name: "enableBuilds",
-                    label: "Enable Builds (for GH/CF Pages, etc)",
-                    type: "checkbox",
-                    defaultValue: false,
-                },
-                {
                     name: "useViewTransitions",
                     label: "Use View Transition API",
                     type: "checkbox",
@@ -248,6 +243,13 @@ export const SiteGlobals: GlobalConfig = {
                     type: "checkbox",
                     defaultValue: true,
                 },
+                {
+                    name: "enableBuilds",
+                    label: "Enable Builds (for GH/CF Pages, etc)",
+                    type: "checkbox",
+                    defaultValue: false,
+                },
+                runBuildButton({ sidebar: true }),
             ],
         },
     ],
