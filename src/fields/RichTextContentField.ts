@@ -13,9 +13,10 @@ import {
 } from "@payloadcms/richtext-lexical";
 import { Code } from "@/blocks/Code";
 import { Image } from "@/blocks/Image";
+import { CoolText } from "@/blocks/inline/CoolText";
 
-const RichTextContent: Field = {
-    name: "content",
+const RichTextContentField = ({ name = "content", minimal = false } = {}): Field => ({
+    name,
     type: "richText",
     label: false,
     editor: lexicalEditor({
@@ -26,19 +27,19 @@ const RichTextContent: Field = {
                     enabledHeadingSizes: ["h1", "h2", "h3", "h4"],
                 }),
                 BlocksFeature({
-                    blocks: [Code, Image],
+                    blocks: minimal ? [] : [Code, Image],
+                    inlineBlocks: [CoolText],
                 }),
                 FixedToolbarFeature(),
                 InlineToolbarFeature(),
-                HorizontalRuleFeature(),
-                InlineCodeFeature(),
-                BlockquoteFeature(),
                 OrderedListFeature(),
                 UnorderedListFeature(),
+                InlineCodeFeature(),
+                ...(minimal ? [] : [HorizontalRuleFeature(), BlockquoteFeature()]),
             ];
         },
     }),
     required: true,
-};
+});
 
-export default RichTextContent;
+export default RichTextContentField;

@@ -1,7 +1,7 @@
 import type { CollectionConfig } from "payload";
 import { slugField } from "@/fields/slug";
 import { authenticated, openAccess } from "@/utils/access";
-import RichTextContent from "@/fields/richTextContent";
+import RichTextContentField from "@/fields/RichTextContentField";
 
 export const Projects: CollectionConfig = {
     slug: "projects",
@@ -34,7 +34,7 @@ export const Projects: CollectionConfig = {
             type: "textarea",
             required: true,
         },
-        RichTextContent,
+        RichTextContentField(),
     ],
 };
 

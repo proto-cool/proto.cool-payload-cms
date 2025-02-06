@@ -1,6 +1,6 @@
 import type { Field } from "payload";
 
-export const runBuildButton = ({ sidebar = false }): Field => {
+export const runBuildButton = ({ sidebar = false } = {}): Field => {
     return {
         name: "runBuildButton",
         type: "ui",

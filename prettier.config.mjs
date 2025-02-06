@@ -1,5 +1,5 @@
 /** @type {import("prettier").Config} */
-export default {
+const prettierSettings = {
     semi: true,
     tabWidth: 4,
     useTabs: false,
@@ -8,3 +8,5 @@ export default {
     printWidth: 100,
     endOfLine: "lf",
 };
+
+export default prettierSettings;

@@ -17,7 +17,8 @@ import { Media } from "./collections/content/Media";
 import { Posts } from "./collections/blog/Posts";
 import { Tags } from "./collections/blog/Tags";
 import Projects from "@/collections/content/Projects";
-import { SiteGlobals } from "@/globals/site";
+import { Hero } from "@/globals/hero";
+import { Site } from "@/globals/site";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -30,7 +31,7 @@ export default buildConfig({
         },
     },
     collections: [Posts, Tags, Projects, Media, Users],
-    globals: [SiteGlobals],
+    globals: [Hero, Site],
     cors: {
         origins: ["http://localhost:3000", "https://payload.proto.cool", "https://proto.cool"],
     },

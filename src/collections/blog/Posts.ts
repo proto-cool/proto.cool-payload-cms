@@ -2,7 +2,7 @@ import type { CollectionConfig } from "payload";
 import { slugField } from "@/fields/slug";
 import ReadTime from "@/fields/blog/ReadTime";
 import { authenticated, authenticatedOrPublished } from "@/utils/access";
-import RichTextContent from "@/fields/richTextContent";
+import RichTextContentField from "@/fields/RichTextContentField";
 import { buildFrontend, getChangedKeys } from "@/utils/builds";
 
 export const Posts: CollectionConfig = {
@@ -79,7 +79,7 @@ export const Posts: CollectionConfig = {
                             relationTo: "media",
                             required: false,
                         },
-                        RichTextContent,
+                        RichTextContentField(),
                     ],
                 },
             ],

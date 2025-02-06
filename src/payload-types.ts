@@ -37,9 +37,11 @@ export interface Config {
         defaultIDType: number;
     };
     globals: {
+        hero: Hero;
         site: Site;
     };
     globalsSelect: {
+        hero: HeroSelect<false> | HeroSelect<true>;
         site: SiteSelect<false> | SiteSelect<true>;
     };
     locale: null;
@@ -408,6 +410,30 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero".
+ */
+export interface Hero {
+    id: number;
+    content: {
+        root: {
+            type: string;
+            children: {
+                type: string;
+                version: number;
+                [k: string]: unknown;
+            }[];
+            direction: ("ltr" | "rtl") | null;
+            format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+            indent: number;
+            version: number;
+        };
+        [k: string]: unknown;
+    };
+    updatedAt?: string | null;
+    createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site".
  */
 export interface Site {
@@ -505,6 +531,16 @@ export interface Site {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero_select".
+ */
+export interface HeroSelect<T extends boolean = true> {
+    content?: T;
+    updatedAt?: T;
+    createdAt?: T;
+    globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site_select".
  */
 export interface SiteSelect<T extends boolean = true> {
@@ -539,6 +575,16 @@ export interface SiteSelect<T extends boolean = true> {
     updatedAt?: T;
     createdAt?: T;
     globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CoolText".
+ */
+export interface CoolText {
+    value: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: "coolText";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

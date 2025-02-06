@@ -1,10 +1,10 @@
-import type { BasePayload, GlobalConfig } from "payload";
+import type { GlobalConfig } from "payload";
 import { authenticated, openAccess } from "@/utils/access";
 import { buildFrontend, getChangedKeys } from "@/utils/builds";
 import { resolveRelationship } from "@/utils/documents";
 import { runBuildButton } from "@/fields/build/run-button";
 
-export const SiteGlobals: GlobalConfig = {
+export const Site: GlobalConfig = {
     slug: "site",
     label: "Metadata & Build Settings",
     admin: {

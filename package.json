@@ -1,6 +1,6 @@
 {
     "name": "proto.cool-payload-cms",
-    "version": "1.6.1",
+    "version": "1.7.0",
     "description": "A blog site template to get started with Payload 3.0",
     "license": "MIT",
     "type": "module",
@@ -54,5 +54,6 @@
     },
     "engines": {
         "node": "^18.20.2 || >=20.9.0"
-    }
+    },
+    "prettier": "./prettier.config.mjs"
 }
