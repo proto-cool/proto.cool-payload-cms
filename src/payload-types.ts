@@ -6,6 +6,60 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * Supported timezones in IANA format.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "supportedTimezones".
+ */
+export type SupportedTimezones =
+    | "Pacific/Midway"
+    | "Pacific/Niue"
+    | "Pacific/Honolulu"
+    | "Pacific/Rarotonga"
+    | "America/Anchorage"
+    | "Pacific/Gambier"
+    | "America/Los_Angeles"
+    | "America/Tijuana"
+    | "America/Denver"
+    | "America/Phoenix"
+    | "America/Chicago"
+    | "America/Guatemala"
+    | "America/New_York"
+    | "America/Bogota"
+    | "America/Caracas"
+    | "America/Santiago"
+    | "America/Buenos_Aires"
+    | "America/Sao_Paulo"
+    | "Atlantic/South_Georgia"
+    | "Atlantic/Azores"
+    | "Atlantic/Cape_Verde"
+    | "Europe/London"
+    | "Europe/Berlin"
+    | "Africa/Lagos"
+    | "Europe/Athens"
+    | "Africa/Cairo"
+    | "Europe/Moscow"
+    | "Asia/Riyadh"
+    | "Asia/Dubai"
+    | "Asia/Baku"
+    | "Asia/Karachi"
+    | "Asia/Tashkent"
+    | "Asia/Calcutta"
+    | "Asia/Dhaka"
+    | "Asia/Almaty"
+    | "Asia/Jakarta"
+    | "Asia/Bangkok"
+    | "Asia/Shanghai"
+    | "Asia/Singapore"
+    | "Asia/Tokyo"
+    | "Asia/Seoul"
+    | "Australia/Sydney"
+    | "Pacific/Guam"
+    | "Pacific/Noumea"
+    | "Pacific/Auckland"
+    | "Pacific/Fiji";
+
 export interface Config {
     auth: {
         users: UserAuthOperations;
@@ -22,16 +76,14 @@ export interface Config {
     };
     collectionsJoins: {};
     collectionsSelect: {
-        posts: PostsSelect<false> | PostsSelect<true>;
-        tags: TagsSelect<false> | TagsSelect<true>;
-        projects: ProjectsSelect<false> | ProjectsSelect<true>;
-        media: MediaSelect<false> | MediaSelect<true>;
-        users: UsersSelect<false> | UsersSelect<true>;
-        "payload-locked-documents":
-            | PayloadLockedDocumentsSelect<false>
-            | PayloadLockedDocumentsSelect<true>;
-        "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-        "payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+        posts: PostsSelect;
+        tags: TagsSelect;
+        projects: ProjectsSelect;
+        media: MediaSelect;
+        users: UsersSelect;
+        "payload-locked-documents": PayloadLockedDocumentsSelect;
+        "payload-preferences": PayloadPreferencesSelect;
+        "payload-migrations": PayloadMigrationsSelect;
     };
     db: {
         defaultIDType: number;
@@ -41,8 +93,8 @@ export interface Config {
         site: Site;
     };
     globalsSelect: {
-        hero: HeroSelect<false> | HeroSelect<true>;
-        site: SiteSelect<false> | SiteSelect<true>;
+        hero: HeroSelect;
+        site: SiteSelect;
     };
     locale: null;
     user: User & {
@@ -452,30 +504,62 @@ export interface Site {
     social?:
         | {
               platform:
+                  | "500px"
                   | "applemusic"
+                  | "bandcamp"
                   | "behance"
+                  | "bilibili"
                   | "bluesky"
+                  | "clubhouse"
                   | "codepen"
+                  | "coub"
+                  | "dailymotion"
                   | "dev"
                   | "discord"
                   | "dribbble"
                   | "email"
                   | "facebook"
+                  | "flickr"
+                  | "gab"
                   | "github"
+                  | "goodreads"
                   | "instagram"
+                  | "ko-fi"
+                  | "lemmy"
+                  | "letterboxd"
                   | "linkedin"
                   | "mastodon"
                   | "medium"
+                  | "myspace"
+                  | "nostr"
+                  | "patreon"
+                  | "peertube"
                   | "pinterest"
                   | "producthunt"
+                  | "quora"
                   | "reddit"
+                  | "rumble"
+                  | "signal"
+                  | "sinaweibo"
                   | "slack"
                   | "snapchat"
+                  | "soundcloud"
+                  | "spoutible"
+                  | "steam"
+                  | "substack"
                   | "telegram"
                   | "threads"
+                  | "threads.net"
                   | "tiktok"
+                  | "tumblr"
                   | "twitch"
+                  | "twitter"
+                  | "vero"
+                  | "vk"
+                  | "wechat"
                   | "whatsapp"
+                  | "wordpress"
+                  | "xing"
                   | "youtube";
               label: string;
               link: string;
