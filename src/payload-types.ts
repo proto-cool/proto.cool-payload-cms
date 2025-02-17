@@ -76,14 +76,16 @@ export interface Config {
     };
     collectionsJoins: {};
     collectionsSelect: {
-        posts: PostsSelect;
-        tags: TagsSelect;
-        projects: ProjectsSelect;
-        media: MediaSelect;
-        users: UsersSelect;
-        "payload-locked-documents": PayloadLockedDocumentsSelect;
-        "payload-preferences": PayloadPreferencesSelect;
-        "payload-migrations": PayloadMigrationsSelect;
+        posts: PostsSelect<false> | PostsSelect<true>;
+        tags: TagsSelect<false> | TagsSelect<true>;
+        projects: ProjectsSelect<false> | ProjectsSelect<true>;
+        media: MediaSelect<false> | MediaSelect<true>;
+        users: UsersSelect<false> | UsersSelect<true>;
+        "payload-locked-documents":
+            | PayloadLockedDocumentsSelect<false>
+            | PayloadLockedDocumentsSelect<true>;
+        "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+        "payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
     };
     db: {
         defaultIDType: number;
@@ -93,8 +95,8 @@ export interface Config {
         site: Site;
     };
     globalsSelect: {
-        hero: HeroSelect;
-        site: SiteSelect;
+        hero: HeroSelect<false> | HeroSelect<true>;
+        site: SiteSelect<false> | SiteSelect<true>;
     };
     locale: null;
     user: User & {
@@ -512,7 +514,6 @@ export interface Site {
                   | "bluesky"
                   | "clubhouse"
                   | "codepen"
-                  | "coub"
                   | "dailymotion"
                   | "dev"
                   | "discord"
@@ -520,18 +521,15 @@ export interface Site {
                   | "email"
                   | "facebook"
                   | "flickr"
-                  | "gab"
                   | "github"
                   | "goodreads"
                   | "instagram"
                   | "ko-fi"
                   | "lemmy"
                   | "letterboxd"
-                  | "linkedin"
                   | "mastodon"
                   | "medium"
                   | "myspace"
-                  | "nostr"
                   | "patreon"
                   | "peertube"
                   | "pinterest"
@@ -544,7 +542,6 @@ export interface Site {
                   | "slack"
                   | "snapchat"
                   | "soundcloud"
-                  | "spoutible"
                   | "steam"
                   | "substack"
                   | "telegram"
@@ -554,7 +551,6 @@ export interface Site {
                   | "tumblr"
                   | "twitch"
                   | "twitter"
-                  | "vero"
                   | "vk"
                   | "wechat"
                   | "whatsapp"
